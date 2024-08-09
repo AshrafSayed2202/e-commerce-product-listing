@@ -1,34 +1,60 @@
 import React, { useState } from 'react';
 
-const AddProductForm = ({ addProduct }) => {
-    const [product, setProduct] = useState({
-        name: '',
-        image: '',
-        price: '',
-        description: '',
-        category: ''
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProduct({ ...product, [name]: value });
-    };
+const AddProductForm = ({ onAddProduct }) => {
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const [category, setCategory] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (product.name && product.image && product.price && product.description && product.category) {
-            setProduct({ name: '', image: '', price: '', description: '', category: '' });
-            addProduct(product);
+        if (name && image && price && description && category) {
+            onAddProduct({ name, image, price, description, category });
+            setName('');
+            setImage('');
+            setPrice('');
+            setDescription('');
+            setCategory('');
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="name" value={product.name} onChange={handleChange} placeholder="Product Name" required />
-            <input type="text" name="image" value={product.image} onChange={handleChange} placeholder="Image URL" required />
-            <input type="number" name="price" value={product.price} onChange={handleChange} placeholder="Price" required />
-            <input type="text" name="description" value={product.description} onChange={handleChange} placeholder="Description" required />
-            <input type="text" name="category" value={product.category} onChange={handleChange} placeholder="Category" required />
+            <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+            />
+            <input
+                type="text"
+                placeholder="Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                required
+            />
+            <input
+                type="number"
+                placeholder="Price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                required
+            />
+            <input
+                type="text"
+                placeholder="Category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+            />
+            <textarea
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+            ></textarea>
             <button type="submit">Add Product</button>
         </form>
     );

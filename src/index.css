@@ -1,24 +1,11 @@
-/* src/index.css */
 body {
   font-family: Arial, sans-serif;
 }
 
-.App {
+.app {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  text-align: center;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-input,
-select,
-button {
-  padding: 10px;
-  margin: 5px;
 }
 
 .product {
@@ -28,11 +15,31 @@ button {
 }
 
 .product img {
-  max-width: 100px;
+  max-width: 100%;
+  height: auto;
 }
 
-.product-list {
+form {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea,
+select,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
